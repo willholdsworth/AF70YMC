@@ -1,0 +1,122 @@
+**Detailed Timeline of Events for Will Holdsworth’s SEAT Leon (AF70YMC) Rejection Case**
+
+**August 19, 2025**:
+- Will Holdsworth purchased a 2021 SEAT Leon 1.5 TSI EVO FR (Reg: AF70YMC) from Hilton Car Supermarket for £11,848. The Autotrader listing (historical-advert-AF70YMC-2025-09-15.pdf) did not mention faults with front/side parking sensors or driver cockpit screen.
+  - Reference: Will Holdsworth’s rejection letter, September 16, 2025 (9:36 AM); Autotrader listing (historical-advert-AF70YMC-2025-09-15.pdf).
+- On the same day, Will Holdsworth noticed non-working front and side parking sensors and called Hilton Car Supermarket to report the issue. The first call from the car did not work (could not hear, hung up). Will Holdsworth called back with his phone and got through. The advisor stated the sensors can get broken by the pressure washer.
+  - Reference: Will Holdsworth’s clarification (noted in latest query); call log (19 Aug, 15:11 and 15:12).
+
+**Before August 30, 2025**:
+- Will Holdsworth reported faults in person to Hilton Car Supermarket (non-working front/side parking sensors and glitching driver cockpit screen). He arranged a diagnostic inspection for August 30.
+  - Reference: Will Holdsworth’s email, September 13, 2025 (12:25 PM), stating faults were reported “ahead of August 30th diagnostic inspection.”
+
+**August 22, 2025**:
+- Will Holdsworth received an email from claims@auxillis.com confirming his hire car was due to end on August 26, 2025.
+  - Reference: Auxillis email, August 22, 2025 (4:11 PM).
+
+**August 24, 2025**:
+- Will Holdsworth drove to Coop and took a photograph of the interior showing 'Audio is Currently Unavailable' message (PXL_20250824_195119472.jpg).
+  - Reference: Photograph (PXL_20250824_195119472.jpg).
+
+**August 26, 2025**:
+- Will Holdsworth’s hire car ended.
+  - Reference: Auxillis email, August 22, 2025 (4:11 PM).
+
+**August 27, 2025**:
+- Will Holdsworth took a photograph showing lane assist unavailable and speed limit warning unavailable (PXL_20250827_172533369.jpg).
+  - Reference: Photograph (PXL_20250827_172533369.jpg).
+
+**August 29, 2025**:
+- Will Holdsworth called Hilton Car Supermarket to confirm an appointment for diagnostics on August 29. They had no record. In a second call, they confirmed Will Holdsworth could bring the car in on August 30 at 10:30am.
+  - Reference: Will Holdsworth’s clarification (noted in latest query); call log (29 Aug, 12:37 and 13:02).
+
+**August 30, 2025**:
+- Will Holdsworth attended a diagnostic inspection at Hilton Car Supermarket. Their diagnostics identified an issue with a module affecting the functionality of the front and side parking sensors. Staff member Seb stated that Hilton Car Supermarket would order a replacement module. Engineers tested the battery and reset the service indicator. Will Holdsworth provided photographs of diagnostic tags showing faults (20250913225624851065.pdf).
+  - Reference: Will Holdsworth’s email, September 13, 2025 (12:25 PM); attached photo (20250913225624851065.pdf).
+
+**September 4, 2025**:
+- Will Holdsworth called Hilton Car Supermarket to ask for an update about the issues and see if a repair was possible.
+  - Reference: Call log (4 Sept, 15:21).
+
+**September 8-13, 2025 (Week of)**:
+- Will Holdsworth made multiple calls to Hilton Car Supermarket. They stated no faults found and advised booking an inspection with a main dealer. Will Holdsworth called Motorvogue Bedford (September 10, 12:05 PM), which had long lead times. Hilton Car Supermarket said they would call dealers and call back but did not. Will Holdsworth called back the following day; no return call. They directed Will Holdsworth to Vindis Milton Keynes, which had the same lead times. Will Holdsworth was on hold for over an hour on September 12 at 16:20 PM and spoke to Roy A, expressing dissatisfaction with faults and lack of repairs. A new employee mentioned warranty was on hold.
+  - Reference: Will Holdsworth’s clarification (noted in latest query); call log (Mon 15:49, Wed 10:06, Thu 15:22, Thu 16:28, Fri 16:20).
+
+**September 13, 2025**:
+- Will Holdsworth visited Hilton Car Supermarket and met with Roy A, Senior Aftersales Advisor, to discuss the unresolved sensor issue from August 30. He showed Roy A photographs of diagnostic tags from August 30 (20250913225624851065.pdf). Roy A stated engineers were unavailable on weekends for checks and claimed returns are only for mechanical faults.
+  - Reference: Will Holdsworth’s email, September 13, 2025 (12:25 PM).
+- Will Holdsworth paid for an independent diagnostic inspection via ClickMechanic (booking ref 16624951, £170.36, mechanic Slav). Faults identified: Parking sensors faulty.
+  - Reference: ClickMechanic booking receipt (noted in latest query).
+- **10:52 AM**: Roy A, Senior Aftersales Advisor from Hilton Car Supermarket, emailed Will Holdsworth to confirm a second diagnostic appointment for September 15 at 9:30 AM.
+  - Reference: Hilton Car Supermarket email, September 13, 2025 (10:52 AM).
+- **11:34 AM**: Hilton Car Supermarket confirmed Will Holdsworth’s prior visits on August 30 and September 13 for diagnostics and discussions.
+  - Reference: Hilton Car Supermarket email, September 13, 2025 (11:34 AM).
+- **12:25 PM**: Will Holdsworth emailed Roy A, confirming the August 30 diagnostic identified a module issue with no parts ordered. He attached photographs (PXL_20250913_090149776.jpg, PXL_20250913_153532928.jpg, PXL_20250914_184802361.jpg), a video of the glitching cockpit screen (PXL_20250904_201118138~2.mp4), and additional evidence (Letter of Vehicle Rejection - AF70YMC.rtf, 20250913225624851065.pdf). Will Holdsworth agreed to the September 15 inspection and noted speaking with Seb on August 30 to locate original diagnostics.
+  - Reference: Will Holdsworth’s email, September 13, 2025 (12:25 PM).
+- **12:26 PM**: Hilton Car Supermarket sent an auto-reply acknowledging Will Holdsworth’s email.
+  - Reference: Hilton Car Supermarket auto-reply, September 13, 2025 (12:26 PM).
+- An independent diagnostic conducted by a mechanic produced the THINKCAR report (SN: 9TDP80604834), listing 11 faults across 7 modules, including DTC B10FCF1 (Parking Aid Fault, Active/Static) and U112300 (Instrument Cluster, Passive/Sporadic).
+  - Reference: THINKCAR report, September 13, 2025 (3:55:57 PM).
+
+**September 15, 2025**:
+- Will Holdsworth attended a second diagnostic inspection at Hilton Car Supermarket at 9:30 AM. Mechanics investigated sensor faults and dash flickering, completing a code scan (later shared as code 76 - Parking Aid with yellow triangle). The front bumper was removed to examine sensors. Will Holdsworth left the vehicle overnight and intended to drop off the second key.
+  - Reference: Hilton Car Supermarket emails, September 15, 2025 (3:50 PM, 4:04 PM, 4:31 PM); Will Holdsworth’s email, September 15, 2025 (3:52 PM); Will Holdsworth’s rejection letter, September 16, 2025 (9:36 AM).
+- Will Holdsworth met with Roy A at 4:00 PM. Roy A stated diagnostic inspections take longer than a day and could not provide code scans. Will Holdsworth presented his own diagnostic scan (THINKCAR report); Hilton Car Supermarket staff said it was not credible and showed no faults. Roy A promised an email update by end of day.
+  - Reference: Will Holdsworth’s clarification (noted in latest query).
+- **3:50 PM**: Roy A from Hilton Car Supermarket emailed Will Holdsworth to confirm the vehicle (AF70YMC) would be safe and secure overnight.
+  - Reference: Hilton Car Supermarket email, September 15, 2025 (3:50 PM).
+- **3:52 PM**: Will Holdsworth emailed Roy A, thanking him for confirming the vehicle’s security and requesting a list of diagnostics performed.
+  - Reference: Will Holdsworth’s email, September 15, 2025 (3:52 PM).
+- **3:53 PM**: Hilton Car Supermarket sent an auto-reply acknowledging Will Holdsworth’s email.
+  - Reference: Hilton Car Supermarket auto-reply, September 15, 2025 (3:53 PM).
+- **4:04 PM**: Roy A from Hilton Car Supermarket emailed Will Holdsworth, stating the front bumper was removed, mechanics were investigating sensor faults and dash flickering, and a code scan was completed. An update was promised by 6:00 PM.
+  - Reference: Hilton Car Supermarket email, September 15, 2025 (4:04 PM).
+- **4:31 PM**: Roy A from Hilton Car Supermarket reiterated an update would be sent by 6:00 PM.
+  - Reference: Hilton Car Supermarket email, September 15, 2025 (4:31 PM).
+- **7:59 PM**: Will Holdsworth emailed Roy A, thanking him for his time during the day’s meeting and confirming he would return the next morning (September 16).
+  - Reference: Will Holdsworth’s email, September 15, 2025 (7:59 PM).
+
+**September 16, 2025**:
+- Will Holdsworth visited Hilton Car Supermarket to discuss the faults and diagnostics, intending to drop off the second key. Hilton Car Supermarket staff refused to accept the second key, leaving Will Holdsworth in possession of the V5C and second key, while Hilton Car Supermarket retained the car and one key.
+  - Reference: Will Holdsworth’s clarification (noted in latest query).
+- **9:36 AM**: Will Holdsworth emailed Roy A with his official rejection letter for AF70YMC, citing unsatisfactory quality due to non-working front/side parking sensors and glitching cockpit screen. He attached proof of purchase (Letter Before Court Claim - AF70YMC.rtf), Autotrader listing (historical-advert-AF70YMC-2025-09-15.pdf), photographs (PXL_20250914_184802361.jpg, 20250916_105954[1].jpg, 20250916_110010[1].jpg, 20250916_110030[1].jpg, 20250916_110043[1].jpg, 20250916_110052[1].jpg, 20250916_105959[1].jpg), a video (PXL_20250904_201118138~2.mp4), and the THINKCAR report (DTC B10FCF1). He demanded a full refund (£11,848) under the Consumer Rights Act 2015, sent with read receipt.
+  - Reference: Will Holdsworth’s email and rejection letter, September 16, 2025 (9:36 AM).
+- **6:25 PM**: Hilton Car Supermarket emailed Will Holdsworth, stating diagnostics were complete and claiming the issues required a dealer software update (costs covered by Hilton). They attached a code scan (Re_AF70YMC.eml) showing code 76 - Parking Aid with a yellow triangle, matching B10FCF1, and claimed “all codes are related to the software update.”
+  - Reference: Hilton Car Supermarket email, September 16, 2025 (6:25 PM).
+- **7:20 PM**: Will Holdsworth emailed, reiterating his rejection (sent at 9:36 AM with read receipt), attaching the rejection letter and link (https://eu.zopen.to/b9ZEIb2VUmVYdCWkF18H).
+  - Reference: Will Holdsworth’s email, September 16, 2025 (7:20 PM).
+- **7:20 PM**: Hilton Car Supermarket sent an auto-reply acknowledging Will Holdsworth’s email.
+  - Reference: Hilton Car Supermarket auto-reply, September 16, 2025 (7:20 PM).
+
+**September 17, 2025**:
+- **10:09 AM**: Hilton Car Supermarket emailed Will Holdsworth, claiming “a repair has been agreed” (citing a “previous conversation”) and that a refund was not an option. They directed him to take the vehicle to a main dealer for a software update and attached their email (Re_AF70YMC (1).eml).
+  - Reference: Hilton Car Supermarket email, September 17, 2025 (10:09 AM).
+- **5:58 PM**: Will Holdsworth emailed, rejecting the claim of an agreed repair and stating he only agreed to diagnostics. He reaffirmed his rejection (September 16, 9:36 AM) for £11,848, noting Hilton Car Supermarket’s post-rejection diagnostics. He attached the rejection letter (Letter of Vehicle Rejection - AF70YMC.rtf) and Hilton Car Supermarket’s email (Re_AF70YMC.eml).
+  - Reference: Will Holdsworth’s email, September 17, 2025 (5:58 PM).
+
+**September 18, 2025**:
+- **10:00 AM**: Hilton Car Supermarket emailed Will Holdsworth, reiterating “a repair has been agreed” and that a refund was not an option, directing him to collect the vehicle and take it for a software update. They attached their email (Re_AF70YMC.eml).
+  - Reference: Hilton Car Supermarket email, September 18, 2025 (10:00 AM).
+- **5:59 PM**: Will Holdsworth emailed, attaching his letter before court claim (Letter Before Court Claim - AF70YMC.rtf), restating his rejection (September 16, 9:36 AM) and demanding a £11,848 refund. He noted no reply to his September 16 letter, offered Alternative Dispute Resolution via The Motor Ombudsman, and warned of county court action if unresolved within 14 days. He attached proof of purchase, rejection letter, and diagnostics evidence.
+  - Reference: Will Holdsworth’s email and letter before court claim, September 18, 2025 (5:59 PM).
+- **5:59 PM**: Hilton Car Supermarket sent an auto-reply acknowledging Will Holdsworth’s email.
+  - Reference: Hilton Car Supermarket auto-reply, September 18, 2025 (5:59 PM).
+
+**September 19, 2025**:
+- **9:53 AM**: Will Holdsworth emailed Diagnostics UK Product Support at diagukps@snapon.com, seeking clarification on the yellow triangle icon on the Triton-D10 scanner. He attached photographs from Hilton Car Supermarket’s diagnostic (20250916_105954[1].jpg, 20250916_110010[1].jpg, 20250916_110030[1].jpg, 20250916_110043[1].jpg, 20250916_110052[1].jpg, 20250916_105959[1].jpg) showing code 76 with a yellow triangle.
+  - Reference: Will Holdsworth’s email, September 19, 2025 (9:53 AM).
+- **10:08 AM**: Beth Johnson, Product Support Technician from Snap-on, responded to Will Holdsworth, confirming the yellow triangle indicates a “fault” within the module, with description/code beside it. She noted green ticks indicate no faults and referenced his photographs, identifying faults in different modules (e.g., Module 19 - no communication).
+  - Reference: Snap-on email, September 19, 2025 (10:08 AM).
+- **11:00 AM**: Will Holdsworth accessed the National Grid website (using Hilton Car Supermarket’s postcode, MK1 1BU) and took a screenshot showing no power outage recorded on September 15, 2025. The screenshot was saved as 20250919_1100_NationalGrid_MK1_1BU.jpg.
+  - Reference: Image 20250919_1100_NationalGrid_MK1_1BU.jpg.
+- Will Holdsworth opened a case with Citizens Advice (case number CCA3201712).
+  - Reference: Will Holdsworth’s clarification (noted in latest query).
+- **12:04 PM (Current Time)**: No further response from Hilton Car Supermarket to Will Holdsworth’s letter before court claim (September 18, 5:59 PM). The vehicle remains at Hilton Car Supermarket’s premises with one key; Will Holdsworth retains the V5C and second key.
+
+**Summary**:
+- Will Holdsworth reported faults (sensors, screen) on August 19, 2025, via phone, with Hilton Car Supermarket suggesting dirt/pressure washing damage.
+- Diagnostics on August 30 and September 15 confirmed faults, supported by the THINKCAR report (11 faults, including DTC B10FCF1 and U112300), Hilton Car Supermarket’s code 76 image (Re_AF70YMC.eml), and Snap-on’s confirmation.
+- Will Holdsworth rejected the vehicle on September 16, 2025 (9:36 AM) with evidence (photographs, video, diagnostics) and read receipt, under the Consumer Rights Act 2015. Hilton Car Supermarket refused the second key.
+- Will Holdsworth consistently denied repair consent, agreeing only to inspections.
+- Hilton Car Supermarket’s claim of “agreed repair” lacks evidence, and their “not faults” argument is refuted by Snap-on, THINKCAR, their September 15 “fault” email, and 20250919_1100_NationalGrid_MK1_1BU.jpg.
+- Evidence includes: Rejection letters (Letter of Vehicle Rejection - AF70YMC.rtf, Letter Before Court Claim - AF70YMC.rtf), THINKCAR report, Snap-on email (September 19, 10:08 AM), Hilton Car Supermarket’s code 76 image (Re_AF70YMC.eml, Re_AF70YMC (1).eml), photographs (PXL_20250913_090149776.jpg, PXL_20250913_153532928.jpg, PXL_20250914_184802361.jpg, 20250916_105954[1].jpg, 20250916_110010[1].jpg, 20250916_110030[1].jpg, 20250916_110043[1].jpg, 20250916_110052[1].jpg, 20250916_105959[1].jpg), video (PXL_20250904_201118138~2.mp4), Autotrader listing (historical-advert-AF70YMC-2025-09-15.pdf), email chain, 20250919_1100_NationalGrid_MK1_1BU.jpg, Citizens Advice case (CCA3201712).
