@@ -42,11 +42,41 @@
             margin-bottom: 20px;
             font-size: 0.9em;
             border-radius: 10px;
+            display: none; /* Initially hidden */
+        }
+
+        .case-summary.active {
+            display: block; /* Show when active */
         }
 
         .case-summary h2 {
             font-size: 1.2em;
             margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .case-summary ul {
+            padding-left: 30px; /* Indent bullet points */
+        }
+
+        .case-summary li {
+            margin-bottom: 10px;
+        }
+
+        .toggle-button {
+            background: #007bff;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .toggle-button:hover {
+            background: #0056b3;
         }
 
         .timeline {
@@ -390,8 +420,9 @@
         return gk_fileData[filename] || "";
         }
 
-        // Modal JavaScript
+        // Modal and Toggle JavaScript
         document.addEventListener('DOMContentLoaded', () => {
+            // Modal for media
             const modal = document.createElement('div');
             modal.className = 'modal';
             modal.innerHTML = `
@@ -429,11 +460,21 @@
                     modalContent.innerHTML = '';
                 }
             });
+
+            // Toggle for case summary
+            const toggleButton = document.querySelector('.toggle-button');
+            const caseSummary = document.querySelector('.case-summary');
+
+            toggleButton.addEventListener('click', () => {
+                caseSummary.classList.toggle('active');
+                toggleButton.textContent = caseSummary.classList.contains('active') ? 'Hide Case Summary' : 'Show Case Summary';
+            });
         });
     </script>
     <div class="container">
         <div class="header">
             <h1>Will Holdsworth vs Hilton Car Supermarket<br>SEAT Leon (AF70YMC) Rejection Case</h1>
+            <button class="toggle-button">Show Case Summary</button>
             <div class="case-summary">
                 <h2>Case Summary</h2>
                 <p>Will Holdsworth officially rejected SEAT Leon AF70YMC on September 16, 2025, citing unsatisfactory quality under the Consumer Rights Act 2015. The rejection was based on non-functioning front/side parking sensors and a glitching cockpit screen that were not disclosed at point of sale.</p>
@@ -633,7 +674,7 @@
                     <ul class="event-list">
                         <li class="event-item">
                             <div class="communication-icon icon-email"></div>
-                            <span class="event-time">Unknown time:</span> Will emailed Hilton Car Supermarket, listing all discovered faults with the vehicle and discussing resolution, first mentioning intent to return the vehicle if issues cannot be resolved.
+                            <span class="event-time">4:51 PM:</span> Will emailed Hilton Car Supermarket, listing all discovered faults with the vehicle and discussing resolution, first mentioning intent to return the vehicle if issues cannot be resolved.
                             <div class="reference">Reference: Will Holdsworth’s email, September 8, 2025 (<a href="https://eu.zopen.to/QupHSpVj14JU0KG8nw9c" target="_blank">Email</a>)</div>
                         </li>
                         <li class="event-item">
