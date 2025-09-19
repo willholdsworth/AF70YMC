@@ -242,6 +242,20 @@
             background: #333;
         }
 
+        .thumbnail {
+            max-width: 100px;
+            max-height: 100px;
+            margin-top: 5px;
+            display: block;
+            object-fit: cover;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .thumbnail-container {
+            margin-top: 5px;
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 10px;
@@ -277,6 +291,11 @@
             .timeline-item {
                 flex-direction: column;
                 align-items: flex-start;
+            }
+
+            .thumbnail {
+                max-width: 80px;
+                max-height: 80px;
             }
         }
     </style>
@@ -371,7 +390,7 @@
                     <ul class="event-list">
                         <li class="event-item">
                             <div class="communication-icon icon-email"></div>
-                            <span class="event-time">4:11 PM:</span> Will received an email from claims@auxillis.com confirming his hire car was due to end on August 26, 2025, explaining why the SEAT Leon (AF70YMC) was not driven immediately and remained on Will's driveway.
+                            <span class="event-time">4:11 PM:</span> Will received an email from claims@auxillis.com confirming his hire car was due to end on August 26, 2025. The SEAT Leon (AF70YMC) was left on Will's driveway to see if the sensors would dry out and fix themselves, as other users reported similar issues after pressure-washing.
                             <div class="reference">Reference: Auxillis email, August 22, 2025 (4:11 PM, <a href="https://eu.zopen.to/qcBrYB4TUCmeFIiGTDAu">Email</a>)</div>
                         </li>
                     </ul>
@@ -387,12 +406,14 @@
                             <div class="communication-icon icon-camera"></div>
                             <span class="event-time">7:51 PM:</span> Will photographed interior showing ‘Audio is Currently Unavailable’ message (<a href="images/PXL_20250824_195119472.jpg">PXL_20250824_195119472.jpg</a>).
                             <span class="evidence-tag">EVIDENCE</span>
+                            <div class="thumbnail-container"><a href="images/PXL_20250824_195119472.jpg"><img src="images/PXL_20250824_195119472.jpg" class="thumbnail" alt="Audio unavailable"></a></div>
                             <div class="reference">Reference: Photograph (<a href="images/PXL_20250824_195119472.jpg">PXL_20250824_195119472.jpg</a>)</div>
                         </li>
                         <li class="event-item">
                             <div class="communication-icon icon-video"></div>
                             <span class="event-time">7:51 PM:</span> Will recorded video showing parking manoeuvre unavailable warning (<a href="images/PXL_20250824_195051986.LS.mp4">PXL_20250824_195051986.LS.mp4</a>).
                             <span class="evidence-tag">KEY EVIDENCE</span>
+                            <div class="thumbnail-container"><a href="images/PXL_20250824_195051986.LS.mp4"><video src="images/PXL_20250824_195051986.LS.mp4" class="thumbnail" controls></video></a></div>
                             <div class="reference">Reference: Video (<a href="images/PXL_20250824_195051986.LS.mp4">PXL_20250824_195051986.LS.mp4</a>)</div>
                         </li>
                     </ul>
@@ -408,6 +429,7 @@
                             <div class="communication-icon icon-camera"></div>
                             <span class="event-time">5:25 PM:</span> Will photographed lane assist and speed limit warning unavailable (<a href="images/PXL_20250827_172533369.jpg">PXL_20250827_172533369.jpg</a>).
                             <span class="evidence-tag">EVIDENCE</span>
+                            <div class="thumbnail-container"><a href="images/PXL_20250827_172533369.jpg"><img src="images/PXL_20250827_172533369.jpg" class="thumbnail" alt="Lane assist unavailable"></a></div>
                             <div class="reference">Reference: Photograph (<a href="images/PXL_20250827_172533369.jpg">PXL_20250827_172533369.jpg</a>)</div>
                         </li>
                     </ul>
@@ -442,6 +464,7 @@
                             <div class="communication-icon icon-verbal"></div>
                             <span class="event-time">10:30 AM:</span> Will attended diagnostic inspection at Hilton Car Supermarket, issue identified with a module affecting parking sensors. Staff member Seb said they would look into ordering a replacement module. Engineers tested battery and reset service indicator. Keychain tag provided, showing front sensor, battery low, and service reset, handwritten on yellow service keychain (<a href="images/PXL_20250913_090149776.jpg">PXL_20250913_090149776.jpg</a>).
                             <span class="evidence-tag">EVIDENCE</span>
+                            <div class="thumbnail-container"><a href="images/PXL_20250913_090149776.jpg"><img src="images/PXL_20250913_090149776.jpg" class="thumbnail" alt="Keychain tag"></a></div>
                             <div class="reference">Reference: Will Holdsworth’s email, September 13, 2025 (12:25 PM, <a href="https://eu.zopen.to/3YlmKWZFeZRGUkc3PZpR">Email</a>); Photo (<a href="images/PXL_20250913_090149776.jpg">PXL_20250913_090149776.jpg</a>)</div>
                         </li>
                     </ul>
@@ -457,6 +480,7 @@
                             <div class="communication-icon icon-video"></div>
                             <span class="event-time">8:11 PM:</span> Will recorded video of glitching cockpit screen (<a href="images/PXL_20250904_201118138~2.mp4">PXL_20250904_201118138~2.mp4</a>).
                             <span class="evidence-tag">KEY EVIDENCE</span>
+                            <div class="thumbnail-container"><a href="images/PXL_20250904_201118138~2.mp4"><video src="images/PXL_20250904_201118138~2.mp4" class="thumbnail" controls></video></a></div>
                             <div class="reference">Reference: Video (<a href="images/PXL_20250904_201118138~2.mp4">PXL_20250904_201118138~2.mp4</a>)</div>
                         </li>
                     </ul>
@@ -610,23 +634,27 @@
                             <div class="communication-icon icon-camera"></div>
                             <span class="event-time">9:01 AM:</span> Will photographed keychain tag from August 30th inspection, showing front sensor, battery low, and service reset, handwritten on yellow service keychain (<a href="images/PXL_20250913_090149776.jpg">PXL_20250913_090149776.jpg</a>).
                             <span class="evidence-tag">EVIDENCE</span>
+                            <div class="thumbnail-container"><a href="images/PXL_20250913_090149776.jpg"><img src="images/PXL_20250913_090149776.jpg" class="thumbnail" alt="Keychain tag"></a></div>
                             <div class="reference">Reference: Photograph (<a href="images/PXL_20250913_090149776.jpg">PXL_20250913_090149776.jpg</a>)</div>
                         </li>
                         <li class="event-item">
                             <div class="communication-icon icon-camera"></div>
                             <span class="event-time">10:09 AM:</span> Will photographed non-functioning front/side parking sensors (<a href="images/PXL_20250913_100916384.jpg">PXL_20250913_100916384.jpg</a>).
                             <span class="evidence-tag">KEY EVIDENCE</span>
+                            <div class="thumbnail-container"><a href="images/PXL_20250913_100916384.jpg"><img src="images/PXL_20250913_100916384.jpg" class="thumbnail" alt="Non-functioning sensors"></a></div>
                             <div class="reference">Reference: Photograph (<a href="images/PXL_20250913_100916384.jpg">PXL_20250913_100916384.jpg</a>)</div>
                         </li>
                         <li class="event-item">
                             <div class="communication-icon icon-camera"></div>
                             <span class="event-time">10:09 AM:</span> Will photographed park assist unavailable message (<a href="images/PXL_20250913_100912686.jpg">PXL_20250913_100912686.jpg</a>).
                             <span class="evidence-tag">KEY EVIDENCE</span>
+                            <div class="thumbnail-container"><a href="images/PXL_20250913_100912686.jpg"><img src="images/PXL_20250913_100912686.jpg" class="thumbnail" alt="Park assist unavailable"></a></div>
                             <div class="reference">Reference: Photograph (<a href="images/PXL_20250913_100912686.jpg">PXL_20250913_100912686.jpg</a>)</div>
                         </li>
                         <li class="event-item">
                             Will paid for an independent diagnostic via ClickMechanic (booking ref 16624951, £170.36, OCTANEBYTES LTD T/A M). Identified parking sensor faults among others.
                             <span class="evidence-tag">INDEPENDENT REPORT</span>
+                            <div class="thumbnail-container"><a href="images/Screenshot_20250913-175915.png"><img src="images/Screenshot_20250913-175915.png" class="thumbnail" alt="ClickMechanic receipt"></a></div>
                             <div class="reference">Reference: ClickMechanic booking receipt (<a href="images/Screenshot_20250913-175915.png">Screenshot_20250913-175915.png</a>)</div>
                         </li>
                         <li class="event-item">
@@ -644,11 +672,16 @@
                         <li class="event-item">
                             <div class="communication-icon icon-verbal"></div>
                             Will visited Hilton Car Supermarket, met Roy A, discussed unresolved sensor issue and glitching cockpit screen, showed diagnostic tag (<a href="images/PXL_20250913_090149776.jpg">PXL_20250913_090149776.jpg</a>). Roy A claimed returns only for mechanical faults.
+                            <div class="thumbnail-container"><a href="images/PXL_20250913_090149776.jpg"><img src="images/PXL_20250913_090149776.jpg" class="thumbnail" alt="Keychain tag"></a></div>
                             <div class="reference">Reference: Will Holdsworth’s email, September 13, 2025 (12:25 PM, <a href="https://eu.zopen.to/3YlmKWZFeZRGUkc3PZpR">Email</a>)</div>
                         </li>
                         <li class="event-item">
                             <div class="communication-icon icon-email"></div>
-                            <span class="event-time">12:25 PM:</span> Will emailed Roy A, confirming August 30th diagnostic issue, attaching photos (<a href="images/PXL_20250913_090149776.jpg">PXL_20250913_090149776.jpg</a>, <a href="images/PXL_20250913_153532928.jpg">PXL_20250913_153532928.jpg</a>, <a href="images/PXL_20250914_184802361.jpg">PXL_20250914_184802361.jpg</a>) and video (<a href="images/PXL_20250904_201118138~2.mp4">PXL_20250904_201118138~2.mp4</a>). Agreed to September 15th inspection.
+                            <span class="event-time">12:25 PM:</span> Will emailed Roy A, confirming August 30th diagnostic issue, attaching photo of diagnostic keychain tag (<a href="images/PXL_20250913_090149776.jpg">PXL_20250913_090149776.jpg</a>) and video (<a href="images/PXL_20250904_201118138~2.mp4">PXL_20250904_201118138~2.mp4</a>). Agreed to September 15th inspection.
+                            <div class="thumbnail-container">
+                                <a href="images/PXL_20250913_090149776.jpg"><img src="images/PXL_20250913_090149776.jpg" class="thumbnail" alt="Keychain tag"></a>
+                                <a href="images/PXL_20250904_201118138~2.mp4"><video src="images/PXL_20250904_201118138~2.mp4" class="thumbnail" controls></video></a>
+                            </div>
                             <div class="reference">Reference: Will Holdsworth’s email, September 13, 2025 (12:25 PM, <a href="https://eu.zopen.to/3YlmKWZFeZRGUkc3PZpR">Email</a>)</div>
                         </li>
                     </ul>
@@ -750,6 +783,14 @@
                             <div class="communication-icon icon-email"></div>
                             <span class="event-time">6:00 PM:</span> Hilton Car Supermarket sent diagnostics completion email with photographs from diagnostic using Snap-on Triton-D10 (<a href="images/20250916_105954[1].jpg">20250916_105954[1].jpg</a>, <a href="images/20250916_110010[1].jpg">20250916_110010[1].jpg</a>, <a href="images/20250916_110030[1].jpg">20250916_110030[1].jpg</a>, <a href="images/20250916_110043[1].jpg">20250916_110043[1].jpg</a>, <a href="images/20250916_105959[1].jpg">20250916_105959[1].jpg</a>, <a href="images/20250916_110052[1].jpg">20250916_110052[1].jpg</a>), confirming a fault with the parking system consistent with the independent diagnostic report.
                             <span class="evidence-tag">KEY EVIDENCE</span>
+                            <div class="thumbnail-container">
+                                <a href="images/20250916_105954[1].jpg"><img src="images/20250916_105954[1].jpg" class="thumbnail" alt="Hilton diagnostic"></a>
+                                <a href="images/20250916_110010[1].jpg"><img src="images/20250916_110010[1].jpg" class="thumbnail" alt="Hilton diagnostic"></a>
+                                <a href="images/20250916_110030[1].jpg"><img src="images/20250916_110030[1].jpg" class="thumbnail" alt="Hilton diagnostic"></a>
+                                <a href="images/20250916_110043[1].jpg"><img src="images/20250916_110043[1].jpg" class="thumbnail" alt="Hilton diagnostic fault"></a>
+                                <a href="images/20250916_105959[1].jpg"><img src="images/20250916_105959[1].jpg" class="thumbnail" alt="Hilton diagnostic"></a>
+                                <a href="images/20250916_110052[1].jpg"><img src="images/20250916_110052[1].jpg" class="thumbnail" alt="Hilton diagnostic"></a>
+                            </div>
                             <div class="reference">Reference: Hilton Car Supermarket email, September 16, 2025 (6:00 PM, <a href="https://eu.zopen.to/ndxqvPfAdhJrGOQKJmGg">Email</a>)</div>
                         </li>
                         <li class="event-item">
@@ -833,6 +874,14 @@
                         <li class="event-item">
                             <div class="communication-icon icon-email"></div>
                             <span class="event-time">9:54 AM:</span> Will Holdsworth emailed Diagnostics UK Product Support at diagukps@snapon.com, seeking clarification on the yellow triangle icon on the Triton-D10 scanner used by Hilton Car Supermarket. He attached photographs from Hilton Car Supermarket's diagnostic (<a href="images/20250916_105954[1].jpg">20250916_105954[1].jpg</a>, <a href="images/20250916_110010[1].jpg">20250916_110010[1].jpg</a>, <a href="images/20250916_110030[1].jpg">20250916_110030[1].jpg</a>, <a href="images/20250916_110043[1].jpg">20250916_110043[1].jpg</a>, <a href="images/20250916_105959[1].jpg">20250916_105959[1].jpg</a>, <a href="images/20250916_110052[1].jpg">20250916_110052[1].jpg</a>).
+                            <div class="thumbnail-container">
+                                <a href="images/20250916_105954[1].jpg"><img src="images/20250916_105954[1].jpg" class="thumbnail" alt="Hilton diagnostic"></a>
+                                <a href="images/20250916_110010[1].jpg"><img src="images/20250916_110010[1].jpg" class="thumbnail" alt="Hilton diagnostic"></a>
+                                <a href="images/20250916_110030[1].jpg"><img src="images/20250916_110030[1].jpg" class="thumbnail" alt="Hilton diagnostic"></a>
+                                <a href="images/20250916_110043[1].jpg"><img src="images/20250916_110043[1].jpg" class="thumbnail" alt="Hilton diagnostic fault"></a>
+                                <a href="images/20250916_105959[1].jpg"><img src="images/20250916_105959[1].jpg" class="thumbnail" alt="Hilton diagnostic"></a>
+                                <a href="images/20250916_110052[1].jpg"><img src="images/20250916_110052[1].jpg" class="thumbnail" alt="Hilton diagnostic"></a>
+                            </div>
                             <div class="reference">Reference: Will Holdsworth’s email, September 19, 2025 (9:54 AM, <a href="https://eu.zopen.to/Ac2AFseMqRFxwctEzSc5">Email</a>)</div>
                         </li>
                     </ul>
