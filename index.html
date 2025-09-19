@@ -321,13 +321,53 @@
     </style>
 </head>
 <body>
+    <script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+    </script>
     <div class="container">
         <div class="header">
             <h1>Will Holdsworth vs Hilton Car Supermarket<br>SEAT Leon (AF70YMC) Rejection Case</h1>
             <div class="case-summary">
                 <h2>Case Summary</h2>
                 <p>Will Holdsworth officially rejected SEAT Leon AF70YMC on September 16, 2025, citing unsatisfactory quality under the Consumer Rights Act 2015. The rejection was based on non-functioning front/side parking sensors and a glitching cockpit screen that were not disclosed at point of sale.</p>
-                <p><strong>Key Evidence:</strong> Non-functioning sensors (PXL_20250913_100916384.jpg), park assist unavailable (PXL_20250913_100912686.jpg), diagnostic fault confirmation (PXL_20250913_090149776.jpg), glitching cockpit screen (PXL_20250904_201118138~2.mp4), parking manoeuvre unavailable warning (PXL_20250824_195051986.LS.mp4), and photographs from Hilton Car Supermarket's diagnostic (20250916_105954[1].jpg, 20250916_110010[1].jpg, 20250916_110030[1].jpg, 20250916_110043[1].jpg, 20250916_105959[1].jpg, 20250916_110052[1].jpg).</p>
+                <p><strong>Key Evidence:</strong> Non-functioning sensors (<a href="images/PXL_20250913_100916384.jpg">PXL_20250913_100916384.jpg</a>), park assist unavailable (<a href="images/PXL_20250913_100912686.jpg">PXL_20250913_100912686.jpg</a>), diagnostic fault confirmation (<a href="images/PXL_20250913_090149776.jpg">PXL_20250913_090149776.jpg</a>), glitching cockpit screen (<a href="images/PXL_20250904_201118138~2.mp4">PXL_20250904_201118138~2.mp4</a>), parking manoeuvre unavailable warning (<a href="images/PXL_20250824_195051986.LS.mp4">PXL_20250824_195051986.LS.mp4</a>), and photographs from Hilton Car Supermarket's diagnostic (<a href="images/20250916_105954[1].jpg">20250916_105954[1].jpg</a>, <a href="images/20250916_110010[1].jpg">20250916_110010[1].jpg</a>, <a href="images/20250916_110030[1].jpg">20250916_110030[1].jpg</a>, <a href="images/20250916_110043[1].jpg">20250916_110043[1].jpg</a>, <a href="images/20250916_105959[1].jpg">20250916_105959[1].jpg</a>, <a href="images/20250916_110052[1].jpg">20250916_110052[1].jpg</a>).</p>
                 <p><strong>Formal Communications:</strong> Initial rejection letter sent September 16, 2025 (9:36 AM), followed by formal letter before court claim on September 18, 2025 (5:59 PM), demanding a full refund of £11,848.</p>
             </div>
         </div>
@@ -340,7 +380,7 @@
                     <ul class="event-list">
                         <li class="event-item">
                             On 19th August, Will Holdsworth purchased a 2021 SEAT Leon 1.5 TSI EVO FR (Reg: AF70YMC) from Hilton Car Supermarket for £11,848. The Autotrader listing did not mention faults with front/side parking sensors or driver cockpit screen.
-                            <div class="reference">Reference: Will Holdsworth’s rejection letter, September 16, 2025 (9:36 AM); Autotrader listing (historical-advert-AF70YMC-2025-09-15.pdf)</div>
+                            <div class="reference">Reference: Will Holdsworth’s rejection letter, September 16, 2025 (9:36 AM); Autotrader listing (<a href="images/historical-advert-AF70YMC-2025-09-15.pdf">historical-advert-AF70YMC-2025-09-15.pdf</a>)</div>
                         </li>
                     </ul>
                 </div>
@@ -384,15 +424,15 @@
                     <ul class="event-list">
                         <li class="event-item">
                             <div class="communication-icon icon-camera"></div>
-                            <span class="event-time">7:51 PM:</span> Will photographed interior showing ‘Audio is Currently Unavailable’ message (PXL_20250824_195119472.jpg).
+                            <span class="event-time">7:51 PM:</span> Will photographed interior showing ‘Audio is Currently Unavailable’ message (<a href="images/PXL_20250824_195119472.jpg">PXL_20250824_195119472.jpg</a>).
                             <span class="evidence-tag">EVIDENCE</span>
-                            <div class="reference">Reference: Photograph (PXL_20250824_195119472.jpg)</div>
+                            <div class="reference">Reference: Photograph (<a href="images/PXL_20250824_195119472.jpg">PXL_20250824_195119472.jpg</a>)</div>
                         </li>
                         <li class="event-item">
                             <div class="communication-icon icon-video"></div>
-                            <span class="event-time">7:51 PM:</span> Will recorded video showing parking manoeuvre unavailable warning (PXL_20250824_195051986.LS.mp4).
+                            <span class="event-time">7:51 PM:</span> Will recorded video showing parking manoeuvre unavailable warning (<a href="images/PXL_20250824_195051986.LS.mp4">PXL_20250824_195051986.LS.mp4</a>).
                             <span class="evidence-tag">KEY EVIDENCE</span>
-                            <div class="reference">Reference: Video (PXL_20250824_195051986.LS.mp4)</div>
+                            <div class="reference">Reference: Video (<a href="images/PXL_20250824_195051986.LS.mp4">PXL_20250824_195051986.LS.mp4</a>)</div>
                         </li>
                     </ul>
                 </div>
@@ -405,9 +445,9 @@
                     <ul class="event-list">
                         <li class="event-item">
                             <div class="communication-icon icon-camera"></div>
-                            <span class="event-time">5:25 PM:</span> Will photographed lane assist and speed limit warning unavailable (PXL_20250827_172533369.jpg).
+                            <span class="event-time">5:25 PM:</span> Will photographed lane assist and speed limit warning unavailable (<a href="images/PXL_20250827_172533369.jpg">PXL_20250827_172533369.jpg</a>).
                             <span class="evidence-tag">EVIDENCE</span>
-                            <div class="reference">Reference: Photograph (PXL_20250827_172533369.jpg)</div>
+                            <div class="reference">Reference: Photograph (<a href="images/PXL_20250827_172533369.jpg">PXL_20250827_172533369.jpg</a>)</div>
                         </li>
                     </ul>
                 </div>
@@ -439,9 +479,9 @@
                     <ul class="event-list">
                         <li class="event-item">
                             <div class="communication-icon icon-verbal"></div>
-                            <span class="event-time">10:30 AM:</span> Will attended diagnostic inspection at Hilton Car Supermarket, issue identified with a module affecting parking sensors. Staff member Seb said they would look into ordering a replacement module. Engineers tested battery and reset service indicator. Diagnostic tags provided (20250913225624851065.pdf).
+                            <span class="event-time">10:30 AM:</span> Will attended diagnostic inspection at Hilton Car Supermarket, issue identified with a module affecting parking sensors. Staff member Seb said they would look into ordering a replacement module. Engineers tested battery and reset service indicator. Diagnostic tags provided (<a href="images/20250913225624851065.pdf">20250913225624851065.pdf</a>).
                             <span class="evidence-tag">EVIDENCE</span>
-                            <div class="reference">Reference: Will Holdsworth’s email, September 13, 2025 (12:25 PM); Photo (20250913225624851065.pdf)</div>
+                            <div class="reference">Reference: Will Holdsworth’s email, September 13, 2025 (12:25 PM); Photo (<a href="images/20250913225624851065.pdf">20250913225624851065.pdf</a>)</div>
                         </li>
                     </ul>
                 </div>
@@ -454,9 +494,9 @@
                     <ul class="event-list">
                         <li class="event-item">
                             <div class="communication-icon icon-video"></div>
-                            <span class="event-time">8:11 PM:</span> Will recorded video of glitching cockpit screen (PXL_20250904_201118138~2.mp4).
+                            <span class="event-time">8:11 PM:</span> Will recorded video of glitching cockpit screen (<a href="images/PXL_20250904_201118138~2.mp4">PXL_20250904_201118138~2.mp4</a>).
                             <span class="evidence-tag">KEY EVIDENCE</span>
-                            <div class="reference">Reference: Video (PXL_20250904_201118138~2.mp4)</div>
+                            <div class="reference">Reference: Video (<a href="images/PXL_20250904_201118138~2.mp4">PXL_20250904_201118138~2.mp4</a>)</div>
                         </li>
                     </ul>
                 </div>
@@ -534,21 +574,21 @@
                     <ul class="event-list">
                         <li class="event-item">
                             <div class="communication-icon icon-camera"></div>
-                            <span class="event-time">9:01 AM:</span> Will photographed diagnostic fault confirmation (PXL_20250913_090149776.jpg).
+                            <span class="event-time">9:01 AM:</span> Will photographed diagnostic fault confirmation (<a href="images/PXL_20250913_090149776.jpg">PXL_20250913_090149776.jpg</a>).
                             <span class="evidence-tag">KEY EVIDENCE</span>
-                            <div class="reference">Reference: Photograph (PXL_20250913_090149776.jpg)</div>
+                            <div class="reference">Reference: Photograph (<a href="images/PXL_20250913_090149776.jpg">PXL_20250913_090149776.jpg</a>)</div>
                         </li>
                         <li class="event-item">
                             <div class="communication-icon icon-camera"></div>
-                            <span class="event-time">10:09 AM:</span> Will photographed non-functioning front/side parking sensors (PXL_20250913_100916384.jpg).
+                            <span class="event-time">10:09 AM:</span> Will photographed non-functioning front/side parking sensors (<a href="images/PXL_20250913_100916384.jpg">PXL_20250913_100916384.jpg</a>).
                             <span class="evidence-tag">KEY EVIDENCE</span>
-                            <div class="reference">Reference: Photograph (PXL_20250913_100916384.jpg)</div>
+                            <div class="reference">Reference: Photograph (<a href="images/PXL_20250913_100916384.jpg">PXL_20250913_100916384.jpg</a>)</div>
                         </li>
                         <li class="event-item">
                             <div class="communication-icon icon-camera"></div>
-                            <span class="event-time">10:09 AM:</span> Will photographed park assist unavailable message (PXL_20250913_100912686.jpg).
+                            <span class="event-time">10:09 AM:</span> Will photographed park assist unavailable message (<a href="images/PXL_20250913_100912686.jpg">PXL_20250913_100912686.jpg</a>).
                             <span class="evidence-tag">KEY EVIDENCE</span>
-                            <div class="reference">Reference: Photograph (PXL_20250913_100912686.jpg)</div>
+                            <div class="reference">Reference: Photograph (<a href="images/PXL_20250913_100912686.jpg">PXL_20250913_100912686.jpg</a>)</div>
                         </li>
                         <li class="event-item">
                             Will paid for an independent diagnostic via ClickMechanic (booking ref 16624951, £170.36, OCTANEBYTES LTD T/A M). Identified parking sensor faults among others.
@@ -569,12 +609,12 @@
                     <ul class="event-list">
                         <li class="event-item">
                             <div class="communication-icon icon-verbal"></div>
-                            Will visited Hilton Car Supermarket, met Roy A, discussed unresolved sensor issue and glitching cockpit screen, showed diagnostic tag (PXL_20250913_090149776.jpg). Roy A claimed returns only for mechanical faults.
+                            Will visited Hilton Car Supermarket, met Roy A, discussed unresolved sensor issue and glitching cockpit screen, showed diagnostic tag (<a href="images/PXL_20250913_090149776.jpg">PXL_20250913_090149776.jpg</a>). Roy A claimed returns only for mechanical faults.
                             <div class="reference">Reference: Will Holdsworth’s email, September 13, 2025 (12:25 PM)</div>
                         </li>
                         <li class="event-item">
                             <div class="communication-icon icon-email"></div>
-                            <span class="event-time">12:25 PM:</span> Will emailed Roy A, confirming August 30th diagnostic issue, attaching photos (PXL_20250913_090149776.jpg, PXL_20250913_153532928.jpg, PXL_20250914_184802361.jpg) and video (PXL_20250904_201118138~2.mp4). Agreed to September 15th inspection.
+                            <span class="event-time">12:25 PM:</span> Will emailed Roy A, confirming August 30th diagnostic issue, attaching photos (<a href="images/PXL_20250913_090149776.jpg">PXL_20250913_090149776.jpg</a>, <a href="images/PXL_20250913_153532928.jpg">PXL_20250913_153532928.jpg</a>, <a href="images/PXL_20250914_184802361.jpg">PXL_20250914_184802361.jpg</a>) and video (<a href="images/PXL_20250904_201118138~2.mp4">PXL_20250904_201118138~2.mp4</a>). Agreed to September 15th inspection.
                             <div class="reference">Reference: Will Holdsworth’s email, September 13, 2025 (12:25 PM)</div>
                         </li>
                     </ul>
@@ -663,7 +703,7 @@
                     <ul class="event-list">
                         <li class="event-item">
                             <div class="communication-icon icon-email"></div>
-                            Hilton Car Supermarket sent through evidence attached to email after Will rejected the vehicle, including photographs from diagnostic using Snap-on Triton-D10 (20250916_105954[1].jpg, 20250916_110010[1].jpg, 20250916_110030[1].jpg, 20250916_110043[1].jpg, 20250916_105959[1].jpg, 20250916_110052[1].jpg).
+                            Hilton Car Supermarket sent through evidence attached to email after Will rejected the vehicle, including photographs from diagnostic using Snap-on Triton-D10 (<a href="images/20250916_105954[1].jpg">20250916_105954[1].jpg</a>, <a href="images/20250916_110010[1].jpg">20250916_110010[1].jpg</a>, <a href="images/20250916_110030[1].jpg">20250916_110030[1].jpg</a>, <a href="images/20250916_110043[1].jpg">20250916_110043[1].jpg</a>, <a href="images/20250916_105959[1].jpg">20250916_105959[1].jpg</a>, <a href="images/20250916_110052[1].jpg">20250916_110052[1].jpg</a>).
                             <span class="evidence-tag">KEY EVIDENCE</span>
                             <div class="reference">Reference: Hilton Car Supermarket email, September 16, 2025 (Post-Rejection)</div>
                         </li>
@@ -692,7 +732,7 @@
                     <ul class="event-list">
                         <li class="event-item">
                             <div class="communication-icon icon-email"></div>
-                            <span class="event-time">9:53 AM:</span> Will Holdsworth emailed Diagnostics UK Product Support at diagukps@snapon.com, seeking clarification on the yellow triangle icon on the Triton-D10 scanner used by Hilton Car Supermarket. He attached photographs from Hilton Car Supermarket's diagnostic (20250916_105954[1].jpg, 20250916_110010[1].jpg, 20250916_110030[1].jpg, 20250916_110043[1].jpg, 20250916_105959[1].jpg, 20250916_110052[1].jpg).
+                            <span class="event-time">9:53 AM:</span> Will Holdsworth emailed Diagnostics UK Product Support at diagukps@snapon.com, seeking clarification on the yellow triangle icon on the Triton-D10 scanner used by Hilton Car Supermarket. He attached photographs from Hilton Car Supermarket's diagnostic (<a href="images/20250916_105954[1].jpg">20250916_105954[1].jpg</a>, <a href="images/20250916_110010[1].jpg">20250916_110010[1].jpg</a>, <a href="images/20250916_110030[1].jpg">20250916_110030[1].jpg</a>, <a href="images/20250916_110043[1].jpg">20250916_110043[1].jpg</a>, <a href="images/20250916_105959[1].jpg">20250916_105959[1].jpg</a>, <a href="images/20250916_110052[1].jpg">20250916_110052[1].jpg</a>).
                             <div class="reference">Reference: Will Holdsworth’s email, September 19, 2025 (9:53 AM)</div>
                         </li>
                     </ul>
