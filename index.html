@@ -1,43 +1,4 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -367,8 +328,8 @@
             <div class="case-summary">
                 <h2>Case Summary</h2>
                 <p>Will Holdsworth officially rejected SEAT Leon AF70YMC on September 16, 2025, citing unsatisfactory quality under the Consumer Rights Act 2015. The rejection was based on non-functioning front/side parking sensors and a glitching cockpit screen that were not disclosed at point of sale.</p>
-                <p><strong>Key Evidence:</strong> Non-functioning sensors (<a href="images/PXL_20250913_100916384.jpg">PXL_20250913_100916384.jpg</a>), park assist unavailable (<a href="images/PXL_20250913_100912686.jpg">PXL_20250913_100912686.jpg</a>), diagnostic fault confirmation (<a href="images/PXL_20250913_090149776.jpg">PXL_20250913_090149776.jpg</a>), glitching cockpit screen (<a href="images/PXL_20250904_201118138~2.mp4">PXL_20250904_201118138~2.mp4</a>), parking manoeuvre unavailable warning (<a href="images/PXL_20250824_195051986.LS.mp4">PXL_20250824_195051986.LS.mp4</a>), and photographs from Hilton Car Supermarket's diagnostic (<a href="images/20250916_105954[1].jpg">20250916_105954[1].jpg</a>, <a href="images/20250916_110010[1].jpg">20250916_110010[1].jpg</a>, <a href="images/20250916_110030[1].jpg">20250916_110030[1].jpg</a>, <a href="images/20250916_110043[1].jpg">20250916_110043[1].jpg</a>, <a href="images/20250916_105959[1].jpg">20250916_105959[1].jpg</a>, <a href="images/20250916_110052[1].jpg">20250916_110052[1].jpg</a>).</p>
-                <p><strong>Formal Communications:</strong> Initial rejection letter sent September 16, 2025 (9:36 AM), followed by formal letter before court claim on September 18, 2025 (5:59 PM), demanding a full refund of £11,848.</p>
+                <p><strong>Key Evidence:</strong> Non-functioning sensors (<a href="images/PXL_20250913_100916384.jpg">PXL_20250913_100916384.jpg</a>), park assist unavailable (<a href="images/PXL_20250913_100912686.jpg">PXL_20250913_100912686.jpg</a>), diagnostic fault confirmation (<a href="images/PXL_20250913_090149776.jpg">PXL_20250913_090149776.jpg</a>), glitching cockpit screen (<a href="images/PXL_20250904_201118138~2.mp4">PXL_20250904_201118138~2.mp4</a>), parking manoeuvre unavailable warning (<a href="images/PXL_20250824_195051986.LS.mp4">PXL_20250824_195051986.LS.mp4</a>), ClickMechanic diagnostic receipt (<a href="images/Screenshot_20250913-175915.png">Screenshot_20250913-175915.png</a>), no power cuts confirmed (<a href="images/screencapture-powercuts-nationalgrid-co-uk-MK11BU-2025-09-17-08_32_24.png">screencapture-powercuts-nationalgrid-co-uk-MK11BU-2025-09-17-08_32_24.png</a>), and photographs from Hilton Car Supermarket's diagnostic (<a href="images/20250916_105954[1].jpg">20250916_105954[1].jpg</a>, <a href="images/20250916_110010[1].jpg">20250916_110010[1].jpg</a>, <a href="images/20250916_110030[1].jpg">20250916_110030[1].jpg</a>, <a href="images/20250916_110043[1].jpg">20250916_110043[1].jpg</a>, <a href="images/20250916_105959[1].jpg">20250916_105959[1].jpg</a>, <a href="images/20250916_110052[1].jpg">20250916_110052[1].jpg</a>).</p>
+                <p><strong>Formal Communications:</strong> Initial rejection letter sent September 16, 2025 (9:36 AM, <a href="https://eu.zopen.to/b9ZEIb2VUmVYdCWkF18H">Re_AF70YMC.eml</a>), followed by formal letter before court claim on September 18, 2025 (5:59 PM, <a href="https://eu.zopen.to/mephk9y7WAyGkAg9WjP8">Re_AF70YMC (1).eml</a>), demanding a full refund of £11,848.</p>
             </div>
         </div>
 
@@ -380,7 +341,7 @@
                     <ul class="event-list">
                         <li class="event-item">
                             On 19th August, Will Holdsworth purchased a 2021 SEAT Leon 1.5 TSI EVO FR (Reg: AF70YMC) from Hilton Car Supermarket for £11,848. The Autotrader listing did not mention faults with front/side parking sensors or driver cockpit screen.
-                            <div class="reference">Reference: Will Holdsworth’s rejection letter, September 16, 2025 (9:36 AM); Autotrader listing (<a href="images/historical-advert-AF70YMC-2025-09-15.pdf">historical-advert-AF70YMC-2025-09-15.pdf</a>)</div>
+                            <div class="reference">Reference: Will Holdsworth’s rejection letter, September 16, 2025 (9:36 AM, <a href="https://eu.zopen.to/b9ZEIb2VUmVYdCWkF18H">Re_AF70YMC.eml</a>); Autotrader listing (<a href="images/historical-advert-AF70YMC-2025-09-15.pdf">historical-advert-AF70YMC-2025-09-15.pdf</a>)</div>
                         </li>
                     </ul>
                 </div>
@@ -479,9 +440,9 @@
                     <ul class="event-list">
                         <li class="event-item">
                             <div class="communication-icon icon-verbal"></div>
-                            <span class="event-time">10:30 AM:</span> Will attended diagnostic inspection at Hilton Car Supermarket, issue identified with a module affecting parking sensors. Staff member Seb said they would look into ordering a replacement module. Engineers tested battery and reset service indicator. Diagnostic tags provided (<a href="images/20250913225624851065.pdf">20250913225624851065.pdf</a>).
+                            <span class="event-time">10:30 AM:</span> Will attended diagnostic inspection at Hilton Car Supermarket, issue identified with a module affecting parking sensors. Staff member Seb said they would look into ordering a replacement module. Engineers tested battery and reset service indicator. Diagnostic tag provided (<a href="images/PXL_20250913_090149776.jpg">PXL_20250913_090149776.jpg</a>).
                             <span class="evidence-tag">EVIDENCE</span>
-                            <div class="reference">Reference: Will Holdsworth’s email, September 13, 2025 (12:25 PM); Photo (<a href="images/20250913225624851065.pdf">20250913225624851065.pdf</a>)</div>
+                            <div class="reference">Reference: Will Holdsworth’s email, September 13, 2025 (12:25 PM, <a href="https://eu.zopen.to/3YlmKWZFeZRGUkc3PZpR">Email</a>); Photo (<a href="images/PXL_20250913_090149776.jpg">PXL_20250913_090149776.jpg</a>)</div>
                         </li>
                     </ul>
                 </div>
@@ -593,7 +554,7 @@
                         <li class="event-item">
                             Will paid for an independent diagnostic via ClickMechanic (booking ref 16624951, £170.36, OCTANEBYTES LTD T/A M). Identified parking sensor faults among others.
                             <span class="evidence-tag">INDEPENDENT REPORT</span>
-                            <div class="reference">Reference: ClickMechanic booking receipt</div>
+                            <div class="reference">Reference: ClickMechanic booking receipt (<a href="images/Screenshot_20250913-175915.png">Screenshot_20250913-175915.png</a>)</div>
                         </li>
                         <li class="event-item">
                             <span class="event-time">3:55 PM:</span> Independent diagnostic (THINKCAR report, SN: 9TDP80604834) by OCTANEBYTES LTD T/A M listed 11 faults across 7 modules, including DTC B10FCF1 (Parking Aid Fault) and U112300 (Instrument Cluster).
@@ -610,12 +571,12 @@
                         <li class="event-item">
                             <div class="communication-icon icon-verbal"></div>
                             Will visited Hilton Car Supermarket, met Roy A, discussed unresolved sensor issue and glitching cockpit screen, showed diagnostic tag (<a href="images/PXL_20250913_090149776.jpg">PXL_20250913_090149776.jpg</a>). Roy A claimed returns only for mechanical faults.
-                            <div class="reference">Reference: Will Holdsworth’s email, September 13, 2025 (12:25 PM)</div>
+                            <div class="reference">Reference: Will Holdsworth’s email, September 13, 2025 (12:25 PM, <a href="https://eu.zopen.to/3YlmKWZFeZRGUkc3PZpR">Email</a>)</div>
                         </li>
                         <li class="event-item">
                             <div class="communication-icon icon-email"></div>
                             <span class="event-time">12:25 PM:</span> Will emailed Roy A, confirming August 30th diagnostic issue, attaching photos (<a href="images/PXL_20250913_090149776.jpg">PXL_20250913_090149776.jpg</a>, <a href="images/PXL_20250913_153532928.jpg">PXL_20250913_153532928.jpg</a>, <a href="images/PXL_20250914_184802361.jpg">PXL_20250914_184802361.jpg</a>) and video (<a href="images/PXL_20250904_201118138~2.mp4">PXL_20250904_201118138~2.mp4</a>). Agreed to September 15th inspection.
-                            <div class="reference">Reference: Will Holdsworth’s email, September 13, 2025 (12:25 PM)</div>
+                            <div class="reference">Reference: Will Holdsworth’s email, September 13, 2025 (12:25 PM, <a href="https://eu.zopen.to/3YlmKWZFeZRGUkc3PZpR">Email</a>)</div>
                         </li>
                     </ul>
                 </div>
@@ -632,7 +593,7 @@
                         <li class="event-item">
                             <div class="communication-icon icon-email"></div>
                             <span class="event-time">11:34 AM:</span> Hilton Car Supermarket confirmed prior visits on August 30th and September 13th.
-                            <div class="reference">Reference: Hilton Car Supermarket email, September 13, 2025 (11:34 AM)</div>
+                            <div class="reference">Reference: Hilton Car Supermarket email, September 13, 2025 (11:34 AM, <a href="https://eu.zopen.to/5cinrcIPQDIhILJGXqiB">Email</a>)</div>
                         </li>
                     </ul>
                 </div>
@@ -646,17 +607,17 @@
                         <li class="event-item">
                             <div class="communication-icon icon-verbal"></div>
                             <span class="event-time">9:30 AM:</span> Will attended second diagnostic inspection at Hilton Car Supermarket. Mechanics investigated sensor faults and dash flickering, completed code scan (code 76 - Parking Aid). Front bumper removed.
-                            <div class="reference">Reference: Hilton Car Supermarket emails, September 15, 2025 (3:50 PM, 4:04 PM, 4:31 PM); Will Holdsworth’s email, September 15, 2025 (3:52 PM)</div>
+                            <div class="reference">Reference: Hilton Car Supermarket emails, September 15, 2025 (3:50 PM, <a href="https://eu.zopen.to/0nurk4cgNmQUc9rPwFTp">Email</a>; 4:04 PM, <a href="https://eu.zopen.to/kZTwunuiq7eBzfyoS3ct">Email</a>; 4:31 PM, <a href="https://eu.zopen.to/XfnZw5Sws4duWpDq13pb">Email</a>); Will Holdsworth’s email, September 15, 2025 (3:52 PM, <a href="https://eu.zopen.to/TZuxumzMZb2DYW8LQBj8">Email</a>)</div>
                         </li>
                         <li class="event-item">
                             <div class="communication-icon icon-verbal"></div>
                             <span class="event-time">4:00 PM:</span> Will met Roy A who said diagnostics take longer than a day and dismissed THINKCAR report. Roy A promised an email update by end of day.
-                            <div class="reference">Reference: Will Holdsworth’s email, September 15, 2025 (7:59 PM)</div>
+                            <div class="reference">Reference: Will Holdsworth’s email, September 15, 2025 (7:59 PM, <a href="https://eu.zopen.to/MFTijNz9ywlH9totkOtZ">Email</a>)</div>
                         </li>
                         <li class="event-item">
                             <div class="communication-icon icon-email"></div>
-                            <span class="event-time">3:52 PM:</span> Will emailed Hilton Car Supermarket, confirming vehicle left overnight and intent to drop off second key.
-                            <div class="reference">Reference: Will Holdsworth’s email, September 15, 2025 (3:52 PM)</div>
+                            <span class="event-time">3:52 PM:</span> Will emailed Hilton Car Supermarket, confirming vehicle left overnight and intent to drop off second key, specifically mentioning faults and issues.
+                            <div class="reference">Reference: Will Holdsworth’s email, September 15, 2025 (3:52 PM, <a href="https://eu.zopen.to/TZuxumzMZb2DYW8LQBj8">Email</a>)</div>
                         </li>
                     </ul>
                 </div>
@@ -668,17 +629,22 @@
                         <li class="event-item">
                             <div class="communication-icon icon-email"></div>
                             <span class="event-time">3:50 PM:</span> Roy A emailed Will, confirming vehicle secure overnight.
-                            <div class="reference">Reference: Hilton Car Supermarket email, September 15, 2025 (3:50 PM)</div>
+                            <div class="reference">Reference: Hilton Car Supermarket email, September 15, 2025 (3:50 PM, <a href="https://eu.zopen.to/0nurk4cgNmQUc9rPwFTp">Email</a>)</div>
                         </li>
                         <li class="event-item">
                             <div class="communication-icon icon-email"></div>
                             <span class="event-time">4:04 PM:</span> Roy A emailed, stating front bumper removed, mechanics investigating, code scan completed, update by 6:00 PM.
-                            <div class="reference">Reference: Hilton Car Supermarket email, September 15, 2025 (4:04 PM)</div>
+                            <div class="reference">Reference: Hilton Car Supermarket email, September 15, 2025 (4:04 PM, <a href="https://eu.zopen.to/kZTwunuiq7eBzfyoS3ct">Email</a>)</div>
                         </li>
                         <li class="event-item">
                             <div class="communication-icon icon-email"></div>
-                            <span class="event-time">4:31 PM:</span> Roy A reiterated update by 6:00 PM.
-                            <div class="reference">Reference: Hilton Car Supermarket email, September 15, 2025 (4:31 PM)</div>
+                            <span class="event-time">4:27 PM:</span> Roy A emailed, providing an overview of what a diagnostic test should cover, including engine management issues, transmission problems, and faults with ignition coils, indicating diagnostics were incomplete.
+                            <div class="reference">Reference: Hilton Car Supermarket email, September 15, 2025 (4:27 PM, <a href="https://eu.zopen.to/lnZgzjbLIH0ZBzen7zK5">Email</a>)</div>
+                        </li>
+                        <li class="event-item">
+                            <div class="communication-icon icon-email"></div>
+                            <span class="event-time">4:31 PM:</span> Roy A reiterated update by 6:00 PM with an ETA for work and a list of tasks to be completed.
+                            <div class="reference">Reference: Hilton Car Supermarket email, September 15, 2025 (4:31 PM, <a href="https://eu.zopen.to/XfnZw5Sws4duWpDq13pb">Email</a>)</div>
                         </li>
                     </ul>
                 </div>
@@ -691,8 +657,14 @@
                     <ul class="event-list">
                         <li class="event-item">
                             <div class="communication-icon icon-email"></div>
-                            <span class="event-time">9:36 AM:</span> Will sent initial rejection letter to Hilton Car Supermarket, citing unsatisfactory quality under Consumer Rights Act 2015, demanding full refund of £11,848.
-                            <div class="reference">Reference: Will Holdsworth’s rejection letter, September 16, 2025 (9:36 AM)</div>
+                            <span class="event-time">9:36 AM:</span> Will sent initial rejection letter to Hilton Car Supermarket, citing unsatisfactory quality under Consumer Rights Act 2015, demanding full refund of £11,848. Will noted Roy A's claim of a power cut preventing email communication, which was contradicted by National Grid records.
+                            <span class="evidence-tag">EVIDENCE</span>
+                            <div class="reference">Reference: Will Holdsworth’s rejection letter (<a href="https://eu.zopen.to/b9ZEIb2VUmVYdCWkF18H">Re_AF70YMC.eml</a>); National Grid screenshot confirming no power cuts (<a href="images/screencapture-powercuts-nationalgrid-co-uk-MK11BU-2025-09-17-08_32_24.png">screencapture-powercuts-nationalgrid-co-uk-MK11BU-2025-09-17-08_32_24.png</a>)</div>
+                        </li>
+                        <li class="event-item">
+                            <div class="communication-icon icon-email"></div>
+                            <span class="event-time">7:20 PM:</span> Will sent a follow-up email reiterating rejection of the vehicle.
+                            <div class="reference">Reference: Will Holdsworth’s email, September 16, 2025 (7:20 PM, <a href="https://eu.zopen.to/jdmwWYksYcbWHsePubLJ">Email</a>)</div>
                         </li>
                     </ul>
                 </div>
@@ -703,23 +675,78 @@
                     <ul class="event-list">
                         <li class="event-item">
                             <div class="communication-icon icon-email"></div>
-                            Hilton Car Supermarket sent through evidence attached to email after Will rejected the vehicle, including photographs from diagnostic using Snap-on Triton-D10 (<a href="images/20250916_105954[1].jpg">20250916_105954[1].jpg</a>, <a href="images/20250916_110010[1].jpg">20250916_110010[1].jpg</a>, <a href="images/20250916_110030[1].jpg">20250916_110030[1].jpg</a>, <a href="images/20250916_110043[1].jpg">20250916_110043[1].jpg</a>, <a href="images/20250916_105959[1].jpg">20250916_105959[1].jpg</a>, <a href="images/20250916_110052[1].jpg">20250916_110052[1].jpg</a>).
+                            <span class="event-time">6:00 PM:</span> Hilton Car Supermarket sent diagnostics completion email with photographs from diagnostic using Snap-on Triton-D10 (<a href="images/20250916_105954[1].jpg">20250916_105954[1].jpg</a>, <a href="images/20250916_110010[1].jpg">20250916_110010[1].jpg</a>, <a href="images/20250916_110030[1].jpg">20250916_110030[1].jpg</a>, <a href="images/20250916_110043[1].jpg">20250916_110043[1].jpg</a>, <a href="images/20250916_105959[1].jpg">20250916_105959[1].jpg</a>, <a href="images/20250916_110052[1].jpg">20250916_110052[1].jpg</a>).
                             <span class="evidence-tag">KEY EVIDENCE</span>
-                            <div class="reference">Reference: Hilton Car Supermarket email, September 16, 2025 (Post-Rejection)</div>
+                            <div class="reference">Reference: Hilton Car Supermarket email, September 16, 2025 (6:00 PM, <a href="https://eu.zopen.to/ndxqvPfAdhJrGOQKJmGg">Email</a>)</div>
+                        </li>
+                        <li class="event-item">
+                            <div class="communication-icon icon-email"></div>
+                            <span class="event-time">7:20 PM:</span> Hilton Car Supermarket sent automated acknowledgment of Will’s follow-up rejection email.
+                            <div class="reference">Reference: Hilton Car Supermarket email, September 16, 2025 (7:20 PM, <a href="https://eu.zopen.to/8nHLwsfyOzg9ragqdptv">Email</a>)</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-date">September 17, 2025</div>
+            <div class="timeline-item hilton-communication">
+                <div class="timeline-content">
+                    <div class="party-label">HILTON</div>
+                    <ul class="event-list">
+                        <li class="event-item">
+                            <div class="communication-icon icon-email"></div>
+                            <span class="event-time">10:09 AM:</span> Hilton Car Supermarket emailed, denying refund, claiming repairs were agreed and advising Will to take the vehicle to a main dealer for a software update. Stated vehicle was ready for collection.
+                            <div class="reference">Reference: Hilton Car Supermarket email, September 17, 2025 (10:09 AM, <a href="https://eu.zopen.to/C2L8InIGYMf6ZI13N8Jf">Email</a>)</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item will-communication">
+                <div class="timeline-content">
+                    <div class="party-label">WILL</div>
+                    <ul class="event-list">
+                        <li class="event-item">
+                            <div class="communication-icon icon-email"></div>
+                            <span class="event-time">5:58 PM:</span> Will emailed Hilton Car Supermarket, restating rejection, clarifying no repairs were agreed as diagnostics were ongoing post-rejection, and attaching original rejection letter.
+                            <div class="reference">Reference: Will Holdsworth’s email, September 17, 2025 (5:58 PM, <a href="https://eu.zopen.to/RAUfk4BPe4ZyWlFhjvYk">Email</a>)</div>
                         </li>
                     </ul>
                 </div>
             </div>
 
             <div class="timeline-date">September 18, 2025</div>
+            <div class="timeline-item hilton-communication">
+                <div class="timeline-content">
+                    <div class="party-label">HILTON</div>
+                    <ul class="event-list">
+                        <li class="event-item">
+                            <div class="communication-icon icon-email"></div>
+                            Hilton Car Supermarket emailed, reiterating repairs were agreed and denying refund, advising Will to collect the vehicle.
+                            <div class="reference">Reference: Hilton Car Supermarket email, September 18, 2025 (<a href="https://eu.zopen.to/sLi2hq9LCvj83vpCF12F">Email</a>)</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
             <div class="timeline-item will-communication court-letter">
                 <div class="timeline-content">
                     <div class="party-label">WILL</div>
                     <ul class="event-list">
                         <li class="event-item">
                             <div class="communication-icon icon-email"></div>
-                            <span class="event-time">5:59 PM:</span> Will sent formal letter before court claim to Hilton Car Supermarket, reiterating demand for full refund of £11,848.
-                            <div class="reference">Reference: Formal letter, September 18, 2025 (5:59 PM)</div>
+                            <span class="event-time">5:59 PM:</span> Will sent formal letter before court claim to Hilton Car Supermarket, reiterating demand for full refund of £11,848, restating rejection under Consumer Rights Act 2015.
+                            <div class="reference">Reference: Formal letter, September 18, 2025 (5:59 PM, <a href="https://eu.zopen.to/mephk9y7WAyGkAg9WjP8">Re_AF70YMC (1).eml</a>)</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item hilton-communication">
+                <div class="timeline-content">
+                    <div class="party-label">HILTON</div>
+                    <ul class="event-list">
+                        <li class="event-item">
+                            <div class="communication-icon icon-email"></div>
+                            Hilton Car Supermarket sent automated acknowledgment of Will’s letter before court claim.
+                            <div class="reference">Reference: Hilton Car Supermarket email, September 18, 2025 (<a href="https://eu.zopen.to/c99blozf0Uvls0ZVSliW">Email</a>)</div>
                         </li>
                     </ul>
                 </div>
@@ -732,8 +759,8 @@
                     <ul class="event-list">
                         <li class="event-item">
                             <div class="communication-icon icon-email"></div>
-                            <span class="event-time">9:53 AM:</span> Will Holdsworth emailed Diagnostics UK Product Support at diagukps@snapon.com, seeking clarification on the yellow triangle icon on the Triton-D10 scanner used by Hilton Car Supermarket. He attached photographs from Hilton Car Supermarket's diagnostic (<a href="images/20250916_105954[1].jpg">20250916_105954[1].jpg</a>, <a href="images/20250916_110010[1].jpg">20250916_110010[1].jpg</a>, <a href="images/20250916_110030[1].jpg">20250916_110030[1].jpg</a>, <a href="images/20250916_110043[1].jpg">20250916_110043[1].jpg</a>, <a href="images/20250916_105959[1].jpg">20250916_105959[1].jpg</a>, <a href="images/20250916_110052[1].jpg">20250916_110052[1].jpg</a>).
-                            <div class="reference">Reference: Will Holdsworth’s email, September 19, 2025 (9:53 AM)</div>
+                            <span class="event-time">9:54 AM:</span> Will Holdsworth emailed Diagnostics UK Product Support at diagukps@snapon.com, seeking clarification on the yellow triangle icon on the Triton-D10 scanner used by Hilton Car Supermarket. He attached photographs from Hilton Car Supermarket's diagnostic (<a href="images/20250916_105954[1].jpg">20250916_105954[1].jpg</a>, <a href="images/20250916_110010[1].jpg">20250916_110010[1].jpg</a>, <a href="images/20250916_110030[1].jpg">20250916_110030[1].jpg</a>, <a href="images/20250916_110043[1].jpg">20250916_110043[1].jpg</a>, <a href="images/20250916_105959[1].jpg">20250916_105959[1].jpg</a>, <a href="images/20250916_110052[1].jpg">20250916_110052[1].jpg</a>).
+                            <div class="reference">Reference: Will Holdsworth’s email, September 19, 2025 (9:54 AM, <a href="https://eu.zopen.to/Ac2AFseMqRFxwctEzSc5">Email</a>)</div>
                         </li>
                     </ul>
                 </div>
@@ -745,7 +772,7 @@
                         <li class="event-item">
                             <div class="communication-icon icon-email"></div>
                             <span class="event-time">10:08 AM:</span> Beth Johnson, Product Support Technician from Snap-on, responded to Will Holdsworth, confirming the yellow triangle indicates "faults" within the module, with description/code beside it. Specific quote from Beth's email response - "In regard to the images you have sent, there are current faults within different modules which require attention.". She noted green ticks indicate no faults and referenced his photographs, identifying faults in different modules (e.g., Module 19 - no communication) directly contradicting previous statements from Roy at Hilton Car Supermarket that no faults were present.
-                            <div class="reference">Reference: Snap-on email, September 19, 2025 (10:08 AM)</div>
+                            <div class="reference">Reference: Snap-on email, September 19, 2025 (10:08 AM, <a href="https://eu.zopen.to/Ac2AFseMqRFxwctEzSc5">Email</a>)</div>
                         </li>
                     </ul>
                 </div>
