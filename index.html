@@ -1,0 +1,716 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will Holdsworth's SEAT Leon Rejection Case Timeline</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.5;
+            color: #333;
+            background: #fff;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .case-summary {
+            background: #f5f5f5;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+            border-radius: 10px;
+        }
+
+        .case-summary h2 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background: #333;
+        }
+
+        .timeline-date {
+            position: relative;
+            text-align: center;
+            margin: 40px 0 20px 0;
+            font-weight: bold;
+            font-size: 1.1em;
+            background: #fff;
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: 1px solid #ddd;
+            display: inline-block;
+            z-index: 1;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin: 10px 0;
+            flex-wrap: wrap;
+        }
+
+        .timeline-content {
+            background: #fff;
+            border: 1px solid #333;
+            padding: 15px;
+            width: 45%;
+            font-size: 0.9em;
+            border-radius: 10px;
+            position: relative;
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .will-communication .timeline-content,
+        .auxillis-communication .timeline-content,
+        .snapon-communication .timeline-content,
+        .evidence .timeline-content,
+        .neutral .timeline-content {
+            margin-left: 52%;
+        }
+
+        .hilton-communication .timeline-content {
+            margin-right: 52%;
+        }
+
+        .rejection-event .timeline-content,
+        .court-letter .timeline-content {
+            border: 2px solid #dc3545;
+        }
+
+        .event-list {
+            list-style: none;
+        }
+
+        .event-item {
+            margin: 10px 0;
+            padding-left: 10px;
+            border-left: 3px solid #333;
+            position: relative;
+            padding-right: 25px;
+        }
+
+        .will-communication .event-item {
+            border-left-color: #007bff;
+        }
+
+        .hilton-communication .event-item {
+            border-left-color: #666;
+        }
+
+        .auxillis-communication .event-item {
+            border-left-color: #28a745;
+        }
+
+        .snapon-communication .event-item {
+            border-left-color: #17a2b8;
+        }
+
+        .evidence .event-item {
+            border-left-color: #dc3545;
+        }
+
+        .event-time {
+            font-weight: bold;
+            display: inline-block;
+            min-width: 70px;
+        }
+
+        .reference {
+            font-style: italic;
+            color: #666;
+            font-size: 0.85em;
+            margin-top: 5px;
+        }
+
+        .communication-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 16px;
+            height: 16px;
+            background: #333;
+            mask-size: contain;
+            mask-repeat: no-repeat;
+            mask-position: center;
+        }
+
+        .icon-email {
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z'/%3E%3Cpolyline points='22,6 12,13 2,6'/%3E%3C/svg%3E");
+        }
+
+        .icon-phone {
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z'/%3E%3C/svg%3E");
+        }
+
+        .icon-camera {
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z'/%3E%3Ccircle cx='12' cy='13' r='4'/%3E%3C/svg%3E");
+        }
+
+        .icon-video {
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpolygon points='23 7 16 12 23 17 23 7'/%3E%3Crect x='1' y='5' width='15' height='14' rx='2' ry='2'/%3E%3C/svg%3E");
+        }
+
+        .icon-verbal {
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z'/%3E%3C/svg%3E");
+        }
+
+        .evidence-tag {
+            background: #dc3545;
+            color: #fff;
+            padding: 2px 6px;
+            font-size: 0.75em;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .party-label {
+            position: absolute;
+            top: -10px;
+            font-size: 0.8em;
+            font-weight: bold;
+            padding: 2px 8px;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        .will-communication .party-label,
+        .auxillis-communication .party-label,
+        .snapon-communication .party-label,
+        .evidence .party-label {
+            right: 10px;
+            background: #007bff;
+        }
+
+        .auxillis-communication .party-label {
+            background: #28a745;
+        }
+
+        .snapon-communication .party-label {
+            background: #17a2b8;
+        }
+
+        .evidence .party-label {
+            background: #dc3545;
+        }
+
+        .hilton-communication .party-label {
+            left: 10px;
+            background: #666;
+        }
+
+        .neutral .party-label {
+            right: 10px;
+            background: #333;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5em;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-date {
+                text-align: left;
+                margin-left: 30px;
+                width: auto;
+                left: 0;
+                transform: none;
+            }
+
+            .timeline-content {
+                width: calc(100% - 40px);
+                margin-left: 40px !important;
+                margin-right: 0 !important;
+                min-width: unset;
+            }
+
+            .party-label {
+                left: 40px;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Will Holdsworth vs Hilton Car Supermarket<br>SEAT Leon (AF70YMC) Rejection Case</h1>
+            <div class="case-summary">
+                <h2>Case Summary</h2>
+                <p>Will Holdsworth officially rejected SEAT Leon AF70YMC on September 16, 2025, citing unsatisfactory quality under the Consumer Rights Act 2015. The rejection was based on non-functioning front/side parking sensors and a glitching cockpit screen that were not disclosed at point of sale.</p>
+                <p><strong>Key Evidence:</strong> Non-functioning sensors (PXL_20250913_100916384.jpg), park assist unavailable (PXL_20250913_100912686.jpg), diagnostic fault confirmation (PXL_20250913_090149776.jpg), glitching cockpit screen (PXL_20250904_201118138~2.mp4), parking manoeuvre unavailable warning (PXL_20250824_195051986.LS.mp4), and photographs from Hilton Car Supermarket's diagnostic (20250916_105954[1].jpg, 20250916_110010[1].jpg, 20250916_110030[1].jpg, 20250916_110043[1].jpg, 20250916_105959[1].jpg, 20250916_110052[1].jpg).</p>
+                <p><strong>Formal Communications:</strong> Initial rejection letter sent September 16, 2025 (9:36 AM), followed by formal letter before court claim on September 18, 2025 (5:59 PM), demanding a full refund of £11,848.</p>
+            </div>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-date">August 19, 2025</div>
+            <div class="timeline-item neutral">
+                <div class="timeline-content">
+                    <div class="party-label">PURCHASE</div>
+                    <ul class="event-list">
+                        <li class="event-item">
+                            On 19th August, Will Holdsworth purchased a 2021 SEAT Leon 1.5 TSI EVO FR (Reg: AF70YMC) from Hilton Car Supermarket for £11,848. The Autotrader listing did not mention faults with front/side parking sensors or driver cockpit screen.
+                            <div class="reference">Reference: Will Holdsworth’s rejection letter, September 16, 2025 (9:36 AM); Autotrader listing (historical-advert-AF70YMC-2025-09-15.pdf)</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item will-communication">
+                <div class="timeline-content">
+                    <div class="party-label">WILL</div>
+                    <ul class="event-list">
+                        <li class="event-item">
+                            <div class="communication-icon icon-phone"></div>
+                            <span class="event-time">3:11 PM:</span> Will noticed non-working front/side parking sensors and called Hilton Car Supermarket. First call from the car failed (no audio, hung up).
+                            <div class="reference">Reference: Call log (19 Aug, 15:11)</div>
+                        </li>
+                        <li class="event-item">
+                            <div class="communication-icon icon-phone"></div>
+                            <span class="event-time">3:12 PM:</span> Second call from phone connected; advisor suggested sensors might be damaged by pressure washer.
+                            <div class="reference">Reference: Call log (19 Aug, 15:12)</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-date">August 22, 2025</div>
+            <div class="timeline-item auxillis-communication">
+                <div class="timeline-content">
+                    <div class="party-label">AUXILLIS</div>
+                    <ul class="event-list">
+                        <li class="event-item">
+                            <div class="communication-icon icon-email"></div>
+                            <span class="event-time">4:11 PM:</span> Will received an email from claims@auxillis.com confirming his hire car was due to end on August 26, 2025.
+                            <div class="reference">Reference: Auxillis email, August 22, 2025 (4:11 PM)</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-date">August 24, 2025</div>
+            <div class="timeline-item evidence">
+                <div class="timeline-content">
+                    <div class="party-label">EVIDENCE</div>
+                    <ul class="event-list">
+                        <li class="event-item">
+                            <div class="communication-icon icon-camera"></div>
+                            <span class="event-time">7:51 PM:</span> Will photographed interior showing ‘Audio is Currently Unavailable’ message (PXL_20250824_195119472.jpg).
+                            <span class="evidence-tag">EVIDENCE</span>
+                            <div class="reference">Reference: Photograph (PXL_20250824_195119472.jpg)</div>
+                        </li>
+                        <li class="event-item">
+                            <div class="communication-icon icon-video"></div>
+                            <span class="event-time">7:51 PM:</span> Will recorded video showing parking manoeuvre unavailable warning (PXL_20250824_195051986.LS.mp4).
+                            <span class="evidence-tag">KEY EVIDENCE</span>
+                            <div class="reference">Reference: Video (PXL_20250824_195051986.LS.mp4)</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-date">August 27, 2025</div>
+            <div class="timeline-item evidence">
+                <div class="timeline-content">
+                    <div class="party-label">EVIDENCE</div>
+                    <ul class="event-list">
+                        <li class="event-item">
+                            <div class="communication-icon icon-camera"></div>
+                            <span class="event-time">5:25 PM:</span> Will photographed lane assist and speed limit warning unavailable (PXL_20250827_172533369.jpg).
+                            <span class="evidence-tag">EVIDENCE</span>
+                            <div class="reference">Reference: Photograph (PXL_20250827_172533369.jpg)</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-date">August 29, 2025</div>
+            <div class="timeline-item will-communication">
+                <div class="timeline-content">
+                    <div class="party-label">WILL</div>
+                    <ul class="event-list">
+                        <li class="event-item">
+                            <div class="communication-icon icon-phone"></div>
+                            <span class="event-time">12:37 PM:</span> Will called Hilton Car Supermarket to confirm diagnostic appointment; no record found.
+                            <div class="reference">Reference: Call log (29 Aug, 12:37)</div>
+                        </li>
+                        <li class="event-item">
+                            <div class="communication-icon icon-phone"></div>
+                            <span class="event-time">1:02 PM:</span> Will called again and confirmed appointment for August 30th at 10:30 AM.
+                            <div class="reference">Reference: Call log (29 Aug, 13:02); Hilton Car Supermarket email, September 13, 2025 (10:52 AM)</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-date">August 30, 2025</div>
+            <div class="timeline-item will-communication">
+                <div class="timeline-content">
+                    <div class="party-label">WILL</div>
+                    <ul class="event-list">
+                        <li class="event-item">
+                            <div class="communication-icon icon-verbal"></div>
+                            <span class="event-time">10:30 AM:</span> Will attended diagnostic inspection at Hilton Car Supermarket, issue identified with a module affecting parking sensors. Staff member Seb said they would look into ordering a replacement module. Engineers tested battery and reset service indicator. Diagnostic tags provided (20250913225624851065.pdf).
+                            <span class="evidence-tag">EVIDENCE</span>
+                            <div class="reference">Reference: Will Holdsworth’s email, September 13, 2025 (12:25 PM); Photo (20250913225624851065.pdf)</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-date">September 4, 2025</div>
+            <div class="timeline-item evidence">
+                <div class="timeline-content">
+                    <div class="party-label">EVIDENCE</div>
+                    <ul class="event-list">
+                        <li class="event-item">
+                            <div class="communication-icon icon-video"></div>
+                            <span class="event-time">8:11 PM:</span> Will recorded video of glitching cockpit screen (PXL_20250904_201118138~2.mp4).
+                            <span class="evidence-tag">KEY EVIDENCE</span>
+                            <div class="reference">Reference: Video (PXL_20250904_201118138~2.mp4)</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item will-communication">
+                <div class="timeline-content">
+                    <div class="party-label">WILL</div>
+                    <ul class="event-list">
+                        <li class="event-item">
+                            <div class="communication-icon icon-phone"></div>
+                            <span class="event-time">3:21 PM:</span> Will called Hilton Car Supermarket for an update on repairs.
+                            <div class="reference">Reference: Call log (4 Sept, 15:21)</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-date">September 8-13, 2025</div>
+            <div class="timeline-item will-communication">
+                <div class="timeline-content">
+                    <div class="party-label">WILL</div>
+                    <ul class="event-list">
+                        <li class="event-item">
+                            <div class="communication-icon icon-phone"></div>
+                            <span class="event-time">Sep 8, 3:49 PM:</span> Will called Hilton Car Supermarket, they claimed no faults found and advised booking with a main dealer.
+                            <div class="reference">Reference: Call log (Mon 15:49)</div>
+                        </li>
+                        <li class="event-item">
+                            <div class="communication-icon icon-phone"></div>
+                            <span class="event-time">Sep 10, 10:06 AM:</span> Will called Hilton Car Supermarket, they promised to contact local SEAT dealers for a faster appointment but did not follow up.
+                            <div class="reference">Reference: Call log (Wed 10:06)</div>
+                        </li>
+                        <li class="event-item">
+                            <div class="communication-icon icon-phone"></div>
+                            <span class="event-time">Sep 10, 12:05 PM:</span> Will called Motorvogue Bedford which offered appointment only at the end of November.
+                            <div class="reference">Reference: Call log (Wed 10:06)</div>
+                        </li>
+                        <li class="event-item">
+                            <div class="communication-icon icon-phone"></div>
+                            <span class="event-time">Sep 11, 3:22 PM:</span> Will called Hilton Car Supermarket after no follow-up, they directed him to Vindis Milton Keynes.
+                            <div class="reference">Reference: Call log (Thu 15:22)</div>
+                        </li>
+                        <li class="event-item">
+                            <div class="communication-icon icon-phone"></div>
+                            <span class="event-time">Sep 11, 4:28 PM:</span> Will called Vindis Milton Keynes, they had similar long lead times.
+                            <div class="reference">Reference: Call log (Thu 16:28)</div>
+                        </li>
+                        <li class="event-item">
+                            <div class="communication-icon icon-phone"></div>
+                            <span class="event-time">Sep 12, 4:20 PM:</span> Will spoke with Roy A after nearly an hour on hold, expressing dissatisfaction and intent to discuss a refund.
+                            <div class="reference">Reference: Call log (Fri 16:20)</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-date">September 11, 2025</div>
+            <div class="timeline-item hilton-communication">
+                <div class="timeline-content">
+                    <div class="party-label">HILTON</div>
+                    <ul class="event-list">
+                        <li class="event-item">
+                            <div class="communication-icon icon-email"></div>
+                            <span class="event-time">4:20 PM:</span> Hilton Car Supermarket emailed, confirming warranty unaffected as issue reported within 30 days. Repairs needed but no specifics provided. Refund enquiry passed to Senior Advisor.
+                            <div class="reference">Reference: Hilton Car Supermarket email, September 11, 2025 (4:20 PM)</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-date">September 13, 2025</div>
+            <div class="timeline-item evidence">
+                <div class="timeline-content">
+                    <div class="party-label">EVIDENCE</div>
+                    <ul class="event-list">
+                        <li class="event-item">
+                            <div class="communication-icon icon-camera"></div>
+                            <span class="event-time">9:01 AM:</span> Will photographed diagnostic fault confirmation (PXL_20250913_090149776.jpg).
+                            <span class="evidence-tag">KEY EVIDENCE</span>
+                            <div class="reference">Reference: Photograph (PXL_20250913_090149776.jpg)</div>
+                        </li>
+                        <li class="event-item">
+                            <div class="communication-icon icon-camera"></div>
+                            <span class="event-time">10:09 AM:</span> Will photographed non-functioning front/side parking sensors (PXL_20250913_100916384.jpg).
+                            <span class="evidence-tag">KEY EVIDENCE</span>
+                            <div class="reference">Reference: Photograph (PXL_20250913_100916384.jpg)</div>
+                        </li>
+                        <li class="event-item">
+                            <div class="communication-icon icon-camera"></div>
+                            <span class="event-time">10:09 AM:</span> Will photographed park assist unavailable message (PXL_20250913_100912686.jpg).
+                            <span class="evidence-tag">KEY EVIDENCE</span>
+                            <div class="reference">Reference: Photograph (PXL_20250913_100912686.jpg)</div>
+                        </li>
+                        <li class="event-item">
+                            Will paid for an independent diagnostic via ClickMechanic (booking ref 16624951, £170.36, OCTANEBYTES LTD T/A M). Identified parking sensor faults among others.
+                            <span class="evidence-tag">INDEPENDENT REPORT</span>
+                            <div class="reference">Reference: ClickMechanic booking receipt</div>
+                        </li>
+                        <li class="event-item">
+                            <span class="event-time">3:55 PM:</span> Independent diagnostic (THINKCAR report, SN: 9TDP80604834) by OCTANEBYTES LTD T/A M listed 11 faults across 7 modules, including DTC B10FCF1 (Parking Aid Fault) and U112300 (Instrument Cluster).
+                            <span class="evidence-tag">KEY EVIDENCE</span>
+                            <div class="reference">Reference: THINKCAR report, September 13, 2025 (3:55:57 PM)</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item will-communication">
+                <div class="timeline-content">
+                    <div class="party-label">WILL</div>
+                    <ul class="event-list">
+                        <li class="event-item">
+                            <div class="communication-icon icon-verbal"></div>
+                            Will visited Hilton Car Supermarket, met Roy A, discussed unresolved sensor issue and glitching cockpit screen, showed diagnostic tag (PXL_20250913_090149776.jpg). Roy A claimed returns only for mechanical faults.
+                            <div class="reference">Reference: Will Holdsworth’s email, September 13, 2025 (12:25 PM)</div>
+                        </li>
+                        <li class="event-item">
+                            <div class="communication-icon icon-email"></div>
+                            <span class="event-time">12:25 PM:</span> Will emailed Roy A, confirming August 30th diagnostic issue, attaching photos (PXL_20250913_090149776.jpg, PXL_20250913_153532928.jpg, PXL_20250914_184802361.jpg) and video (PXL_20250904_201118138~2.mp4). Agreed to September 15th inspection.
+                            <div class="reference">Reference: Will Holdsworth’s email, September 13, 2025 (12:25 PM)</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item hilton-communication">
+                <div class="timeline-content">
+                    <div class="party-label">HILTON</div>
+                    <ul class="event-list">
+                        <li class="event-item">
+                            <div class="communication-icon icon-email"></div>
+                            <span class="event-time">10:52 AM:</span> Roy A emailed Will to confirm second diagnostic appointment for September 15th at 9:30 AM.
+                            <div class="reference">Reference: Hilton Car Supermarket email, September 13, 2025 (10:52 AM)</div>
+                        </li>
+                        <li class="event-item">
+                            <div class="communication-icon icon-email"></div>
+                            <span class="event-time">11:34 AM:</span> Hilton Car Supermarket confirmed prior visits on August 30th and September 13th.
+                            <div class="reference">Reference: Hilton Car Supermarket email, September 13, 2025 (11:34 AM)</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-date">September 15, 2025</div>
+            <div class="timeline-item will-communication">
+                <div class="timeline-content">
+                    <div class="party-label">WILL</div>
+                    <ul class="event-list">
+                        <li class="event-item">
+                            <div class="communication-icon icon-verbal"></div>
+                            <span class="event-time">9:30 AM:</span> Will attended second diagnostic inspection at Hilton Car Supermarket. Mechanics investigated sensor faults and dash flickering, completed code scan (code 76 - Parking Aid). Front bumper removed.
+                            <div class="reference">Reference: Hilton Car Supermarket emails, September 15, 2025 (3:50 PM, 4:04 PM, 4:31 PM); Will Holdsworth’s email, September 15, 2025 (3:52 PM)</div>
+                        </li>
+                        <li class="event-item">
+                            <div class="communication-icon icon-verbal"></div>
+                            <span class="event-time">4:00 PM:</span> Will met Roy A who said diagnostics take longer than a day and dismissed THINKCAR report. Roy A promised an email update by end of day.
+                            <div class="reference">Reference: Will Holdsworth’s email, September 15, 2025 (7:59 PM)</div>
+                        </li>
+                        <li class="event-item">
+                            <div class="communication-icon icon-email"></div>
+                            <span class="event-time">3:52 PM:</span> Will emailed Hilton Car Supermarket, confirming vehicle left overnight and intent to drop off second key.
+                            <div class="reference">Reference: Will Holdsworth’s email, September 15, 2025 (3:52 PM)</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item hilton-communication">
+                <div class="timeline-content">
+                    <div class="party-label">HILTON</div>
+                    <ul class="event-list">
+                        <li class="event-item">
+                            <div class="communication-icon icon-email"></div>
+                            <span class="event-time">3:50 PM:</span> Roy A emailed Will, confirming vehicle secure overnight.
+                            <div class="reference">Reference: Hilton Car Supermarket email, September 15, 2025 (3:50 PM)</div>
+                        </li>
+                        <li class="event-item">
+                            <div class="communication-icon icon-email"></div>
+                            <span class="event-time">4:04 PM:</span> Roy A emailed, stating front bumper removed, mechanics investigating, code scan completed, update by 6:00 PM.
+                            <div class="reference">Reference: Hilton Car Supermarket email, September 15, 2025 (4:04 PM)</div>
+                        </li>
+                        <li class="event-item">
+                            <div class="communication-icon icon-email"></div>
+                            <span class="event-time">4:31 PM:</span> Roy A reiterated update by 6:00 PM.
+                            <div class="reference">Reference: Hilton Car Supermarket email, September 15, 2025 (4:31 PM)</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-date">September 16, 2025</div>
+            <div class="timeline-item will-communication rejection-event">
+                <div class="timeline-content">
+                    <div class="party-label">WILL</div>
+                    <ul class="event-list">
+                        <li class="event-item">
+                            <div class="communication-icon icon-email"></div>
+                            <span class="event-time">9:36 AM:</span> Will sent initial rejection letter to Hilton Car Supermarket, citing unsatisfactory quality under Consumer Rights Act 2015, demanding full refund of £11,848.
+                            <div class="reference">Reference: Will Holdsworth’s rejection letter, September 16, 2025 (9:36 AM)</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item hilton-communication">
+                <div class="timeline-content">
+                    <div class="party-label">HILTON</div>
+                    <ul class="event-list">
+                        <li class="event-item">
+                            <div class="communication-icon icon-email"></div>
+                            Hilton Car Supermarket sent through evidence attached to email after Will rejected the vehicle, including photographs from diagnostic using Snap-on Triton-D10 (20250916_105954[1].jpg, 20250916_110010[1].jpg, 20250916_110030[1].jpg, 20250916_110043[1].jpg, 20250916_105959[1].jpg, 20250916_110052[1].jpg).
+                            <span class="evidence-tag">KEY EVIDENCE</span>
+                            <div class="reference">Reference: Hilton Car Supermarket email, September 16, 2025 (Post-Rejection)</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-date">September 18, 2025</div>
+            <div class="timeline-item will-communication court-letter">
+                <div class="timeline-content">
+                    <div class="party-label">WILL</div>
+                    <ul class="event-list">
+                        <li class="event-item">
+                            <div class="communication-icon icon-email"></div>
+                            <span class="event-time">5:59 PM:</span> Will sent formal letter before court claim to Hilton Car Supermarket, reiterating demand for full refund of £11,848.
+                            <div class="reference">Reference: Formal letter, September 18, 2025 (5:59 PM)</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-date">September 19, 2025</div>
+            <div class="timeline-item will-communication">
+                <div class="timeline-content">
+                    <div class="party-label">WILL</div>
+                    <ul class="event-list">
+                        <li class="event-item">
+                            <div class="communication-icon icon-email"></div>
+                            <span class="event-time">9:53 AM:</span> Will Holdsworth emailed Diagnostics UK Product Support at diagukps@snapon.com, seeking clarification on the yellow triangle icon on the Triton-D10 scanner used by Hilton Car Supermarket. He attached photographs from Hilton Car Supermarket's diagnostic (20250916_105954[1].jpg, 20250916_110010[1].jpg, 20250916_110030[1].jpg, 20250916_110043[1].jpg, 20250916_105959[1].jpg, 20250916_110052[1].jpg).
+                            <div class="reference">Reference: Will Holdsworth’s email, September 19, 2025 (9:53 AM)</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item snapon-communication">
+                <div class="timeline-content">
+                    <div class="party-label">SNAP-ON</div>
+                    <ul class="event-list">
+                        <li class="event-item">
+                            <div class="communication-icon icon-email"></div>
+                            <span class="event-time">10:08 AM:</span> Beth Johnson, Product Support Technician from Snap-on, responded to Will Holdsworth, confirming the yellow triangle indicates "faults" within the module, with description/code beside it. Specific quote from Beth's email response - "In regard to the images you have sent, there are current faults within different modules which require attention.". She noted green ticks indicate no faults and referenced his photographs, identifying faults in different modules (e.g., Module 19 - no communication) directly contradicting previous statements from Roy at Hilton Car Supermarket that no faults were present.
+                            <div class="reference">Reference: Snap-on email, September 19, 2025 (10:08 AM)</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
